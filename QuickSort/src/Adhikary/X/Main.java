@@ -48,7 +48,7 @@ public class Main {
 
 			}
 
-			//{  20,12,2,4,5,19,6,21,22,23}  j = 6 , i = 7
+			//{  20,12,2,4,5,19,6,21,22,23}  j = 6 , i = 6
 
 			//{ 20 , 12,2,4,5,25 , 6 ,21,22,23} j = 5 , i = 5
 			while( i < j && arr[++i] <= pivot);
@@ -62,7 +62,7 @@ public class Main {
 
 
 		arr[i] = pivot;
-		return i;
+		return j;
 	}
 
 

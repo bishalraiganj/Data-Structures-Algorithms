@@ -34,12 +34,11 @@ public class Main {
 		{
 
 
-			countArr[getAscii(value.charAt(value.length()-position-1)) - 65 - 32]++; // we subtracted 65 because char 'a' is 65
+			countArr[getAscii(value.charAt(value.length()-position-1)) - 97]++; // we subtracted 65 because char 'a' is 65
 			// , so in order to get index 0 for 'a'
 			// ,  we have to subtract , and so 65 is the min value
 
-			// We also had to decrease 32 because this is the difference between ascii and unicode
-			// , and since java usually converts char's to their unicode equivalents and not to ascii
+
 		}
 
 //		System.out.println(Arrays.toString(countArr));
@@ -60,7 +59,7 @@ public class Main {
 		for(int i = arr.length -1 ; i >= 0 ; i--)
 		{
 
-			tempArr[(countArr[getAscii(arr[i].charAt(arr[i].length()-position-1))- 65 - 32]--) - 1] = arr[i];
+			tempArr[(countArr[getAscii(arr[i].charAt(arr[i].length()-position-1))- 97]--) - 1] = arr[i];
 
 
 		}

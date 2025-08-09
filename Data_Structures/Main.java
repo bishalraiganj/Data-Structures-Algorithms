@@ -35,6 +35,20 @@ public class Main {
 		list2.printList();
 		System.out.println(list2.getSize());
 
+		Employee bishal = new Employee("Bishal","Adhikary",1);
+		list2.addToEnd(bishal);
+		list2.printList();
+		System.out.println(list2.getSize());
+
+		list2.removeFromFront();
+		list2.printList();
+		System.out.println(list2.getSize());
+
+		System.out.println("-".repeat(50));
+		list2.removeFromEnd();
+		list2.printList();
+		System.out.println(list2.getSize());
+
 
 
 

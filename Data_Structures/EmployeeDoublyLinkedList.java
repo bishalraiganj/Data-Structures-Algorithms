@@ -31,7 +31,7 @@ public class EmployeeDoublyLinkedList {
 		public void addToEnd(Employee e)
 		{
 			EmployeeNode node = new EmployeeNode(e);
-			node.setPrevious(tail);
+
 			if(tail == null)
 			{
 				head = node;
@@ -39,11 +39,13 @@ public class EmployeeDoublyLinkedList {
 			else
 			{
 				tail.setNext(node);
+				node.setPrevious(tail);
 			}
 			tail = node;
 			size++;
 
 		}
+
 
 		public boolean isEmpty()
 		{
@@ -83,9 +85,51 @@ public class EmployeeDoublyLinkedList {
 
 			EmployeeNode removedNode = head;
 			head = head.getNext();
+
+			if(head != null)
+			{
+				head.setPrevious(null);
+				if(head.getNext() == null)
+				{
+					tail = head;
+				}
+			}
+			else
+			{
+				tail = null;
+			}
+
 			size--;
 			removedNode.setNext(null);
 			return removedNode;
+		}
+
+
+		public EmployeeNode removeFromEnd()
+		{
+
+			if(isEmpty())
+			{
+				return null;
+			}
+			EmployeeNode removedNode = tail;
+
+			if(tail.getPrevious() == null)
+			{
+				head = null;
+			}
+			else
+			{
+				tail.getPrevious().setNext(null);
+			}
+			tail = tail.getPrevious();
+			size--;
+			removedNode.setPrevious(null);
+			return removedNode;
+
+
+
+
 		}
 
 

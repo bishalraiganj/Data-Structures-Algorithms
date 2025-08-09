@@ -24,6 +24,16 @@ public class Main {
 		System.out.println(list.getSize());
 		list.printList();
 
+		System.out.println("-".repeat(50));
+
+		EmployeeDoublyLinkedList list2 = new EmployeeDoublyLinkedList();
+		list2.addToFront(janeJones);
+		list2.addToFront(johnDoe);
+		list2.addToFront(marySmith);
+		list2.addToFront(mikeWilson);
+
+		list2.printList();
+		System.out.println(list2.getSize());
 
 
 

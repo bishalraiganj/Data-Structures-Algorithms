@@ -51,6 +51,27 @@ public class Main {
 
 
 
+		System.out.println("-".repeat(50));
+		list2.printList();
+		list2.addBefore(bishal,janeJones);
+		list2.printList();
+
+		Employee mirage = new Employee("Mirage","2000",1984);
+
+		list2.addBefore(mirage,bishal);
+		list2.printList();
+		System.out.println(list2.getSize());
+
+
+		System.out.println("-".repeat(50));
+		EmployeeDoublyLinkedList list3 = new EmployeeDoublyLinkedList();
+		list3.addToEnd(bishal);
+		list3.printList();
+		list3.addBefore(mirage,bishal);
+		list3.printList();
+
+
+
 
 	}
 }

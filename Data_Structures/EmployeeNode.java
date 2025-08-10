@@ -6,37 +6,57 @@ public class EmployeeNode {
 	private EmployeeNode previous;
 
 
-	public EmployeeNode(Employee e)
-	{
-		this.employee=e;
+	public EmployeeNode(Employee e) {
+		this.employee = e;
 	}
 
-	public Employee getEmployee()
-	{
+	public Employee getEmployee() {
 		return employee;
 	}
-	public void setEmployee(Employee e)
-	{
-		this.employee=e;
+
+	public void setEmployee(Employee e) {
+		this.employee = e;
 	}
-	public EmployeeNode getNext()
-	{
+
+	public EmployeeNode getNext() {
 		return next;
 	}
-	public void setNext(EmployeeNode next)
-	{
-		this.next=next;
+
+	public void setNext(EmployeeNode next) {
+		this.next = next;
 	}
 
 
-	public EmployeeNode getPrevious()
-	{
+	public EmployeeNode getPrevious() {
 		return previous;
 	}
 
-	public void setPrevious(EmployeeNode previous)
+	public void setPrevious(EmployeeNode previous) {
+		this.previous = previous;
+	}
+
+
+	@Override
+	public boolean equals(Object o)
 	{
-		this.previous=previous;
+		if(this == o)
+		{
+			return true;
+		}
+
+		if( o == null || this.getClass() != o.getClass())
+		{
+			return false;
+		}
+
+
+		EmployeeNode e = (EmployeeNode) o;
+
+		if(this.employee == e.getEmployee())
+		{
+			return true;
+		}
+		return false;
 	}
 
 

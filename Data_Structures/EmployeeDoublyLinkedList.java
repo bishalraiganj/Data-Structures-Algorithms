@@ -3,11 +3,42 @@ public class EmployeeDoublyLinkedList {
 
 
 
-
-
 		private EmployeeNode head;
 		private int size;
 		private EmployeeNode tail;
+
+
+
+		public void addBefore(Employee n,Employee existing)
+		{
+			EmployeeNode newNode = new EmployeeNode(n);
+
+			EmployeeNode node = head ;
+
+
+			while(node!=null && node.getNext()!=null && node.getEmployee() != existing)
+			{
+				node = node.getNext();
+			}
+
+			if(node!=null && node.getEmployee()==existing)
+			{
+
+				if(node.getPrevious()==null)
+				{
+					head=newNode;
+				}
+				if(node.getPrevious()!=null) {
+					node.getPrevious().setNext(newNode);
+				}
+				newNode.setPrevious(node.getPrevious());
+				node.setPrevious(newNode);
+				newNode.setNext(node);
+				size++;
+
+			}
+		}
+
 
 
 

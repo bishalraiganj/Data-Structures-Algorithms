@@ -1,5 +1,27 @@
-public record Employee(String firstName,String lastName,int id) {
+public record Employee(String firstName,String lastName,int id)  implements Comparable<Employee> {
 
+
+
+	@Override
+	public int compareTo(Employee o)
+	{
+
+		if(this == o ||  ( this.id == o.id  && this.firstName.trim().equals(o.firstName.trim())) && this.lastName.trim().equals(o.lastName.trim()))
+		{
+			return 0;
+		}
+		else if(this.id() > o.id())
+		{
+			return 1;
+		}
+		else
+		{
+			return -1;
+		}
+
+
+
+	}
 
 	@Override
 	public boolean equals(Object o)

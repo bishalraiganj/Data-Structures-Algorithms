@@ -1,8 +1,8 @@
 public class GenericNode <T>{
 
-	T next;
+	GenericNode<T> next;
 	T current;
-	T previous;
+	GenericNode<T> previous;
 
 
 	public GenericNode(T obj)
@@ -15,23 +15,30 @@ public class GenericNode <T>{
 		return current;
 	}
 
-	public T getNext()
+	public GenericNode<T> getNext()
 	{
 		return next;
 	}
 
-	public T getPrevious()
+	public GenericNode<T> getPrevious()
 	{
 		return previous;
 	}
 
-	public void setNext(T next)
+	public void setNext(GenericNode<T> next)
 	{
 		this.next = next;
 	}
 
-	public void setPrevious(T previous)
+	public void setPrevious(GenericNode<T> previous)
 	{
 		this.previous = previous;
+	}
+
+
+	@Override
+	public String toString()
+	{
+		return current.toString();
 	}
 }

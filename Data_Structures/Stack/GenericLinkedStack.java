@@ -3,7 +3,7 @@ package Stack;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
-public class GenericLinkedStack<T extends Employee> {
+public class GenericLinkedStack<T extends Object> {
 
 
 	private LinkedList<T> stack = new LinkedList<>();

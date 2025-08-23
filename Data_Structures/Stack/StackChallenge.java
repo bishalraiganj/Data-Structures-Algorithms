@@ -11,11 +11,40 @@ public class StackChallenge {
 	{
 
 
-		String s1 = "Bishal ., Adhikary !,";
+
+		System.out.println(punctuationRemover("I did, Did I? "));
+
+		String s1 = "Bis..,ha, l ., Ad?hi..kary?!,";
 		String s2= punctuationRemover(s1);
 		System.out.println("Before punct removal : " + s1);
 		System.out.println("After punct removal: " + s2);
 		System.out.println(s2.length());
+		System.out.println(punctuationRemover("I did, Did I? "));
+
+		System.out.println("-".repeat(50));
+
+		System.out.println(punctuationRemover("I did, Did I? "));
+
+
+		System.out.println(palindromeChecker("iammai"));
+
+		System.out.println(palindromeChecker("I did,  ... Did I?"));
+
+		System.out.println(palindromeChecker("abccba"));
+
+		System.out.println(palindromeChecker("Was it a car or a cat I saw ?"));
+		System.out.println(palindromeChecker("affa sada"));
+		System.out.println(palindromeChecker("oppo"));
+
+//		System.out.println(checkForPalindrome("abccba"));
+//		// should return true
+//		System.out.println(checkForPalindrome("Was it a car or a cat I saw?"));
+//		// should return false
+//		System.out.println(checkForPalindrome("I did, did I?"));
+//		// should return true
+//		System.out.println(checkForPalindrome("hello"));
+//		// should return false
+//		System.out.println(checkForPalindrome("Don't nod"));
 
 
 	}
@@ -23,25 +52,44 @@ public class StackChallenge {
 
 	public static boolean palindromeChecker(String str)
 	{
+		str = punctuationRemover(str);
+		GenericLinkedStack<Character> ls = new GenericLinkedStack<>();
 
+		char[] arr = str.toCharArray();
+		for(char c : arr)
+		{
 
+			ls.push(c);
+		}
 
+		String reversedStr = "";
 
-return true;
+		for(int i = 0 ; i < arr.length ; i++)
+		{
+			reversedStr += ls.pop();
+		}
+
+		return reversedStr.equalsIgnoreCase(str);
+
 	}
+
+
+
 
 	public static String punctuationRemover(String str)
 	{
 
 		//The following pattern removes punctuation and space only
-		Pattern p = Pattern.compile("([ \\p{Punct}])+");
-		Matcher m = p.matcher(str);
+//		Pattern p = Pattern.compile("([ \\p{Punct}])");
+//		Matcher m = p.matcher(str);
+//
+//		while(m.find())
+//		{
+//			str = str.replace(m.group(1	),"");
+//		}
 
-		while(m.find())
-		{
-			str = str.replace(m.group(),"");
-		}
-
+		//Can be replace with the following logic
+		str = str.replaceAll("[ \\p{Punct}]","");
 		return str;
 
 	}

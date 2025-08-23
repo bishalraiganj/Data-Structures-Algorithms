@@ -28,7 +28,7 @@ public class Main {
 
 		System.out.println("-".repeat(50));
 
-		LinkedStack<Employee> ls = new LinkedStack();
+		GenericLinkedStack<Employee> ls = new GenericLinkedStack();
 		ls.push(bishal);
 		ls.push(roshni);
 		ls.push(trishita);

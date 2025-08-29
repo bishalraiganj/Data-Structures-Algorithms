@@ -31,6 +31,8 @@ public class ArrayQueue<T extends Object> {
 	}
 
 
+
+
 	public void add(T item)
 	{
 
@@ -40,22 +42,51 @@ public class ArrayQueue<T extends Object> {
 		if(back == queue.length && (back-front >= queue.length/2 ))
 		{
 			queue = Arrays.copyOf(queue,queue.length * 2 );
+
+			back = back-front;
+			queue[back++] = item;
+			front  = 0;
 			capacity = queue.length;
+
 		}
+		//When back pointer hit the last index + 1 or limit but not that many elements present < queue.length / 2
 		else if(back == queue.length)
 		{
-			int count = 0;
-			for(T val : queue)
-			{
-				queue[count++] = val;
-			}
+
+				int count = 0;
+
+				for(int i = front;i<back;i++)
+				{
+
+					queue[count++] = queue[i];
+					queue[i] = null;
+				}
+
+
+//				for (T val : queue)
+//				{
+//					if(val!=null)
+//					{
+//					queue[count++] = val;
+//					}
+//				}
+				front = 0;
+				back = count;
+				queue[back++] = item;
+
+
 		}
 		else
 		{
 			queue[back++] = item;
+
 		}
 
 	}
+
+
+
+
 
 	public T remove()
 	{
@@ -72,6 +103,7 @@ public class ArrayQueue<T extends Object> {
 		return item;
 	}
 
+
 	public T peek() {
 		if (front == back){
 			throw new NoSuchElementException();
@@ -79,15 +111,21 @@ public class ArrayQueue<T extends Object> {
 		return queue[front];
 	}
 
+
+
 	public int size()
 	{
 		return back - front;
 	}
 
+
+
+
 	public boolean isEmpty()
 	{
 		return back == front;
 	}
+
 
 
 	public void printQueue()
@@ -105,9 +143,19 @@ public class ArrayQueue<T extends Object> {
 
 	}
 
+
+
 	public int capacity()
 	{
 		return capacity;
+	}
+
+
+
+
+	public String getFrontnBackCount()
+	{
+		return front+","+back;
 	}
 
 

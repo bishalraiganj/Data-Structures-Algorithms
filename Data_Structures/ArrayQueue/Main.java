@@ -33,8 +33,9 @@ public class Main {
 		aq1.remove();
 		aq1.remove();
 		aq1.remove();
-//		aq1.remove();
-//		aq1.remove();
+		aq1.remove();
+		aq1.remove();
+		aq1.remove();
 		System.out.println("-".repeat(50));
 		System.out.println(aq1.capacity());
 
@@ -45,8 +46,13 @@ public class Main {
 		aq1.add("Wd s");
 		aq1.add("Mx s");
 
+
+		System.out.println("-".repeat(50));
+		aq1.remove();
 		aq1.printQueue();
 		System.out.println(aq1.capacity());
+
+		System.out.println(aq1.getFrontnBackCount());
 
 
 

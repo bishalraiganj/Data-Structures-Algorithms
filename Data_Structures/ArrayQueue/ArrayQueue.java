@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.StringJoiner;
 
 public class ArrayQueue<T extends Object> {
 
@@ -31,6 +32,9 @@ public class ArrayQueue<T extends Object> {
 	public void add(T item)
 	{
 
+		// if there are less than half the size of number of elements then we shift them back to
+		// the start, we do not create another double sized array and shift ,
+		//we do it directly , because we still have significant space left
 		if(back == queue.length && (back-front >= queue.length/2 ))
 		{
 			queue = Arrays.copyOf(queue,queue.length * 2 );
@@ -82,6 +86,20 @@ public class ArrayQueue<T extends Object> {
 		return back == front;
 	}
 
+
+	public void printQueue()
+	{
+
+		StringJoiner sj = new StringJoiner(", ","[","]");
+
+		for(T val : queue)
+		{
+			sj.add(val.toString());
+		}
+
+		System.out.println(sj.toString());
+
+	}
 
 
 

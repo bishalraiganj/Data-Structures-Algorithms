@@ -19,6 +19,36 @@ public class Main {
 		System.out.println(aq1.size());
 		aq1.printQueue();
 
+		System.out.println("-".repeat(50));
+
+		aq1.add("Anesa B");
+		aq1.add("Oregon s");
+		aq1.add("Star p");
+		aq1.add("Pys a");
+		aq1.add("Simons d");
+		aq1.add("ds ds");
+		aq1.add("Jo j");
+		aq1.add("KP p");
+		aq1.remove();
+		aq1.remove();
+		aq1.remove();
+		aq1.remove();
+//		aq1.remove();
+//		aq1.remove();
+		System.out.println("-".repeat(50));
+		System.out.println(aq1.capacity());
+
+		aq1.add("Po s");
+
+		aq1.add("Os d");
+		System.out.println(aq1.capacity());
+		aq1.add("Wd s");
+		aq1.add("Mx s");
+
+		aq1.printQueue();
+		System.out.println(aq1.capacity());
+
+
 
 
 

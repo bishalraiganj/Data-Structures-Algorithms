@@ -10,6 +10,7 @@ public class ArrayQueue<T extends Object> {
 
 
 	private T[] queue;
+	private int capacity;
 	private int front;
 	private int back;
 
@@ -26,6 +27,7 @@ public class ArrayQueue<T extends Object> {
 		// cause , in our cause the actual type is our desired on even though we have to pass the
 		// class object
 		this.queue =  (T[]) Array.newInstance(clazz,capacity);
+		this.capacity = capacity;
 	}
 
 
@@ -38,6 +40,7 @@ public class ArrayQueue<T extends Object> {
 		if(back == queue.length && (back-front >= queue.length/2 ))
 		{
 			queue = Arrays.copyOf(queue,queue.length * 2 );
+			capacity = queue.length;
 		}
 		else if(back == queue.length)
 		{
@@ -100,6 +103,11 @@ public class ArrayQueue<T extends Object> {
 
 		System.out.println(sj.toString());
 
+	}
+
+	public int capacity()
+	{
+		return capacity;
 	}
 
 

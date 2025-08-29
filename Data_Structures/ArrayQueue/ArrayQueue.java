@@ -13,6 +13,7 @@ public class ArrayQueue<T extends Object> {
 	private int capacity;
 	private int front;
 	private int back;
+	private Class<T> clazz;
 
 	public ArrayQueue(Class<T> clazz,int capacity)
 	{
@@ -26,6 +27,7 @@ public class ArrayQueue<T extends Object> {
 		// This approach is better than creating Object[] and casting
 		// cause , in our cause the actual type is our desired on even though we have to pass the
 		// class object
+		this.clazz = clazz;
 		this.queue =  (T[]) Array.newInstance(clazz,capacity);
 		this.capacity = capacity;
 	}
@@ -41,7 +43,11 @@ public class ArrayQueue<T extends Object> {
 		//we do it directly , because we still have significant space left
 		if(back == queue.length && (back-front >= queue.length/2 ))
 		{
-			queue = Arrays.copyOf(queue,queue.length * 2 );
+			T[] newArr = (T[])  Array.newInstance(clazz,queue.length * 2);
+			System.arraycopy(queue,front,newArr,0,back-front);
+			queue = newArr;
+
+//			queue = Arrays.copyOf(queue,queue.length * 2 );
 
 			back = back-front;
 			queue[back++] = item;
@@ -90,15 +96,19 @@ public class ArrayQueue<T extends Object> {
 
 	public T remove()
 	{
-		if(front ==  back ) // or back - front == 0
+		if(back - front == 0 ) // or back - front == 0
 		{
-			front = 0;
-			back = 0;
 			throw  new NoSuchElementException();
 		}
 
 		T item = queue[front];
 		queue[front++] = null;
+
+		if(front ==  back ) // or back - front == 0
+		{
+			front = 0;
+			back = 0;
+		}
 
 		return item;
 	}
@@ -153,7 +163,7 @@ public class ArrayQueue<T extends Object> {
 
 
 
-	public String getFrontnBackCount()
+	public String getFrontnBackCounterPosition()
 	{
 		return front+","+back;
 	}

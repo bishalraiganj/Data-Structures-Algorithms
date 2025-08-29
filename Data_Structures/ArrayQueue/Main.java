@@ -52,7 +52,7 @@ public class Main {
 		aq1.printQueue();
 		System.out.println(aq1.capacity());
 
-		System.out.println(aq1.getFrontnBackCount());
+		System.out.println(aq1.getFrontnBackCounterPosition());
 
 
 

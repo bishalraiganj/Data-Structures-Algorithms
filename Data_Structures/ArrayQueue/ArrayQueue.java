@@ -92,9 +92,10 @@ public class ArrayQueue<T extends Object> {
 
 		StringJoiner sj = new StringJoiner(", ","[","]");
 
-		for(T val : queue)
-		{
-			sj.add(val.toString());
+		for(T val : queue) {
+			if (val != null) {
+				sj.add(val.toString());
+			}
 		}
 
 		System.out.println(sj.toString());

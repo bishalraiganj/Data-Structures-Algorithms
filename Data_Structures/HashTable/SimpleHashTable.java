@@ -2,6 +2,8 @@ package HashTable;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
+
 import Stack.*;
 
 //T extends Object is unnecessary because even without explicitly extending T by default implicitly extends  Object
@@ -11,16 +13,25 @@ import Stack.*;
 //so , explicitly doing T extends Object is unnecessary
 public class SimpleHashTable<T extends Object,S extends Object > {
 
-	private S[] hashTable;
+	private final Class<T> keyClazz; //This is for runtime type - safety
+	private final Class<S> valueClazz; // This is for runtime type - safety ( generally not used, because of complexity and memory and other overheads)
+	private Entry<T,S>[] hashTable;
 	private int capacity;
 
-	public SimpleHashTable(Class<T> clazz, int capacity) {
-		hashTable = (S[]) Array.newInstance(clazz, capacity);
+	public SimpleHashTable(Class<T> keyClazz,Class<S> valueClazz,int capacity) {
+
+
+		this.keyClazz = keyClazz;
+		this.valueClazz = valueClazz;
+
+		hashTable =(Entry<T,S>[]) Array.newInstance(Entry.class,capacity);
 		this.capacity = capacity;
 	}
 
 
+
 	public void put(T key, S value) {
+
 
 
 		int hashValue = hashValue(key);
@@ -42,7 +53,7 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 
 
 		if (hashTable[hashValue] == null) {
-			hashTable[hashValue] = value;
+			hashTable[hashValue] = new Entry<T,S>(keyClazz,valueClazz,key,value);
 		} else {
 			System.out.println("Same key already exists or  key is generating same hashValue and conflict's are not managed !");
 		}
@@ -58,15 +69,76 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 
 	public S get(T key)
 	{
-		 return hashTable[hashValue(key)];
+
+		int resultIndex = findCorrectKeyIndex(key);
+		if(resultIndex == -1)
+		{
+			throw new NoSuchElementException("Key not found");
+		}
+		 return hashTable[resultIndex].getValue();
 	}
 
+	public int findCorrectKeyIndex(T key)
+	{
+		int hashValue = this.hashValue(key);
+
+
+		if(!checkSpace(hashValue) && hashTable[hashValue].getKey().equals(key))
+		{
+			return hashValue;
+		}
+
+		else if(hashTable[hashValue] != null){
+
+			int stopIndex = hashValue;
+
+			if(hashValue == capacity - 1)
+			{
+				hashValue = 0;
+			}
+			else{
+				hashValue++;
+			}
+
+
+			while(hashValue != stopIndex && hashTable[hashValue] != null && !hashTable[hashValue].getKey().equals(key))
+			{
+				hashValue = ( hashValue + 1 ) % capacity;
+			}
+
+
+			// when control of execution comes here , we have three possibilities either .
+			//1. we reached stopIndex
+			//2. we have current hasValue/index value null
+			//3. or fount the correct index cause the Entry's key matches
+
+
+			if(hashTable[hashValue] !=null && hashTable[hashValue].getKey().equals(key))
+			{
+				return hashValue;
+			}
+			else{
+				return -1;
+			}
+		}
+		else
+		{
+			return -1;
+		}
+
+
+
+
+
+	}
 
 	public void printHashTable()
 	{
-		for(S val : hashTable)
+
+		int counter = 0;
+		for(Entry<T,S> entry : hashTable)
 		{
-			System.out.println(val);
+			System.out.println("index(" + counter++ +"):" +entry);
 		}
 
 	}

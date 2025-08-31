@@ -21,13 +21,40 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 
 
 	public void put(T key, S value) {
-		if (hashTable[hashValue(key)] == null) {
-			hashTable[hashValue(key)] = value;
+
+
+		int hashValue = hashValue(key);
+		int stopIndex = this.hashValue(key);
+
+		if(!checkSpace(hashValue)) {
+			if (hashValue == capacity - 1) {
+				hashValue = 0;
+			} else {
+				hashValue++;
+			}
+		}
+
+		while(!checkSpace(hashValue) &&  hashValue !=stopIndex)
+		{
+			hashValue =  ( hashValue + 1 ) % capacity;
+		}
+
+
+
+		if (hashTable[hashValue] == null) {
+			hashTable[hashValue] = value;
 		} else {
 			System.out.println("Same key already exists or  key is generating same hashValue and conflict's are not managed !");
 		}
 
 	}
+
+	private boolean checkSpace(int hashValue)
+	{
+		return  hashTable[hashValue]==null;
+	}
+
+
 
 	public S get(T key)
 	{

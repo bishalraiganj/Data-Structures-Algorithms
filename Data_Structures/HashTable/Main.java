@@ -12,6 +12,13 @@ public class Main {
 		ht.put("Eizen","Star Eizen");
 		ht.put("Franklin","Ranson Frankline");
 		ht.put("Srar","Tear Srar");
+		ht.put("Srar","Human Srar");
+		ht.put("Franklin","Mayor Franklin");
+		ht.put("Adhikary","Steel Adhikary");
+		ht.put("Srar","Rima Srar");
+		ht.put("Srar","Hima Srar");
+
+		ht.put("Last","Last Last");
 
 		ht.printHashTable();
 

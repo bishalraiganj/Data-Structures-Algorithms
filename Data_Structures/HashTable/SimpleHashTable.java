@@ -100,7 +100,7 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 
 			while ( hashValue != stopIndex)
 			{
-				if(hashTable[hashValue].getKey().equals(key))
+				if(hashTable[hashValue] != null && hashTable[hashValue].getKey().equals(key))
 				{
 					S matchedValue = hashTable[hashValue].getValue();
 					hashTable[hashValue] = null;
@@ -207,6 +207,8 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 		}
 		else
 		{
+			// If primitive's such as int's floats's doubles's are key's then toString() is
+			// invoked on their auto-boxed versions and their decimal string version is returned
 			return key.toString().length() % capacity;
 		}
 

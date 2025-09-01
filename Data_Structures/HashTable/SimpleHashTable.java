@@ -84,7 +84,9 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 		int hashValue = this.hashValue(key);
 		if (hashTable[hashValue] != null && hashTable[hashValue].getKey().equals(key))
 		{
-			return hashTable[hashValue].getValue();
+			S matchedValue =  hashTable[hashValue].getValue();
+			hashTable[hashValue] = null;
+			return matchedValue;
 		}
 		else  {
 			int stopIndex = hashValue;
@@ -128,7 +130,7 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 			return hashValue;
 		}
 
-		else if(hashTable[hashValue] != null){
+		else{
 
 			int stopIndex = hashValue;
 
@@ -152,29 +154,12 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 
 			}
 
-
 			// when control of execution comes here , we have three possibilities either .
 			//1. we reached stopIndex
-			//2. we have current hasValue/index value null
-			//3. or fount the correct index cause the Entry's key matches
 
-
-			if(hashTable[hashValue] !=null && hashTable[hashValue].getKey().equals(key))
-			{
-				return hashValue;
-			}
-			else{
-				return -1;
-			}
-		}
-		else
-		{
 			return -1;
+
 		}
-
-
-
-
 
 	}
 

@@ -55,6 +55,28 @@ public class Main {
 		System.out.println(sht2.removeFirst(3));
 		System.out.println(sht2.get(1));
 
+		System.out.println(sht2.removeFirst(1));
+
+		System.out.println(sht2.get(1));
+		System.out.println("-".repeat(50));
+
+		sht2.printHashTable();
+
+		System.out.println("-".repeat(50));
+		System.out.println(sht2.removeFirst(1));
+
+		sht2.printHashTable();
+
+		System.out.println("-".repeat(50));
+//		sht2.removeFirst(2);
+		sht2.put(2,new Employee("Le","Roy",2));
+		sht2.printHashTable();
+
+//		sht2.removeFirst(2);
+		System.out.println(sht2.get(2));
+		sht2.printHashTable();
+
+
 
 
 	}

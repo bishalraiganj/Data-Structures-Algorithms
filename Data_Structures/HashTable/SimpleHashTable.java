@@ -101,9 +101,15 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 			}
 
 
-			while(hashValue != stopIndex && hashTable[hashValue] != null && !hashTable[hashValue].getKey().equals(key))
+			while(hashValue != stopIndex )
 			{
-				hashValue = ( hashValue + 1 ) % capacity;
+
+				if(hashTable[hashValue] !=null && hashTable[hashValue].getKey().equals(key))
+				{
+					return hashValue;
+				}
+					hashValue = (hashValue + 1) % capacity;
+
 			}
 
 

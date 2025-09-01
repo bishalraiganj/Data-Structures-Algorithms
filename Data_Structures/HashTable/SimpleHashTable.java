@@ -34,8 +34,8 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 
 
 
-		int hashValue = hashValue(key);
-		int stopIndex = this.hashValue(key);
+		int hashValue = this.hashValue(key);
+		int stopIndex = hashValue(key);
 
 		if(!checkSpace(hashValue)) {
 			if (hashValue == capacity - 1) {
@@ -51,6 +51,9 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 		}
 
 
+		// When execution control flow comes  here, there are two possibilities
+		//1. hashValue found checkSpace true / null / empty position
+		//2.hashValue reached stopIndex / hashValue == stopIndex
 
 		if (hashTable[hashValue] == null) {
 			hashTable[hashValue] = new Entry<T,S>(keyClazz,valueClazz,key,value);

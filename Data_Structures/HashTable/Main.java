@@ -77,7 +77,38 @@ public class Main {
 		sht2.printHashTable();
 
 
+		System.out.println("-".repeat(50));
 
+		sht2.put(3,new Employee("Sf","ss",3));
+//		sht2.put(3,new Employee("sff","sfs",3));
+		sht2.printHashTable();
+
+
+
+		System.out.println(hashValueDemo(234,10));
+	}
+
+
+	private  static int hashValueDemo(Object key, int capacity)
+	{
+
+		if(key instanceof Employee)
+		{
+			Employee e = (Employee) key;
+
+			return e.lastName().length() % capacity;
+		}
+		else if(key instanceof String)
+		{
+			String str = (String) key;
+			return str.length() % capacity;
+		}
+		else
+		{
+			// If primitive's such as int's floats's doubles's are key's then toString() is
+			// invoked on their auto-boxed versions and their decimal string version is returned
+			return key.toString().length() % capacity;
+		}
 
 	}
 }

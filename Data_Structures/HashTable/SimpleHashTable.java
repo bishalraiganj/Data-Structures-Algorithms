@@ -146,6 +146,11 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 			}
 
 
+
+			//rehashing during removal might be a better choice than not stopping the while loop(for looking) at null positions,
+			//because , assuming removal's are less likely to occur than get's
+			// so if we rehash at each removal then there is will be no  chance for a null value to be before
+			// the element/value we are looking , cause null is never added at removal's and put adds values/elements in the first null position
 			while(hashValue != stopIndex )
 			{
 
@@ -157,7 +162,7 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 
 			}
 
-			// when control of execution comes here , we have three possibilities either .
+			// when control of execution comes here , we have one possibilities .
 			//1. we reached stopIndex
 
 			return -1;

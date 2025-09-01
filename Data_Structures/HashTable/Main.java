@@ -84,6 +84,11 @@ public class Main {
 		sht2.printHashTable();
 
 
+		sht2.printHashTable();
+		sht2.put(123456789,new Employee("bishal","9A",9));
+		sht2.printHashTable();
+		System.out.println(sht2.get(123456789));
+
 
 		System.out.println(hashValueDemo(234,10));
 	}

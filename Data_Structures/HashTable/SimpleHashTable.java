@@ -78,6 +78,46 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 		 return hashTable[resultIndex].getValue();
 	}
 
+
+
+	public S removeFirst(T key) {
+		int hashValue = this.hashValue(key);
+		if (hashTable[hashValue] != null && hashTable[hashValue].getKey().equals(key))
+		{
+			return hashTable[hashValue].getValue();
+		}
+		else  {
+			int stopIndex = hashValue;
+
+			if(hashValue == capacity - 1)
+			{
+				hashValue = 0;
+			}
+			else{
+				hashValue++;
+			}
+
+
+			while ( hashValue != stopIndex)
+			{
+				if(hashTable[hashValue].getKey().equals(key))
+				{
+					S matchedValue = hashTable[hashValue].getValue();
+					hashTable[hashValue] = null;
+					return matchedValue;
+				}
+
+				hashValue = (hashValue + 1 ) % capacity;
+
+			}
+		}
+
+		throw new NoSuchElementException("Key not found");
+
+	}
+
+
+
 	public int findCorrectKeyIndex(T key)
 	{
 		int hashValue = this.hashValue(key);
@@ -169,6 +209,7 @@ public class SimpleHashTable<T extends Object,S extends Object > {
 		{
 			return key.toString().length() % capacity;
 		}
+
 
 	}
 

@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Array_DataStructure/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Data_Structures" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Cpu-Cache-Performance/CAS operation" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SearchAlgorithms" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

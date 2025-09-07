@@ -28,6 +28,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	}
 
 
+	public void traverseInOrder()
+	{
+		root.traverseInOrder();
+	}
+
 
 
 

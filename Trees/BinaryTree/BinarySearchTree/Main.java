@@ -12,9 +12,19 @@ public class Main
 
 		BinarySearchTree<Integer> bst =  new BinarySearchTree<>(Integer.class);
 
-		bst.insert(25);
-		bst.insert(23);
-		bst.insert(29);
+		bst.insert(35);
+		bst.insert(45);
+		bst.insert(26);
+		bst.insert(22);
+		bst.insert(27);
+		bst.insert(40);
+		bst.insert(48);
+		bst.insert(39);
+		bst.insert(41);
+		bst.insert(46);
+		bst.insert(49);
+
+		bst.traverseInOrder();
 
 
 

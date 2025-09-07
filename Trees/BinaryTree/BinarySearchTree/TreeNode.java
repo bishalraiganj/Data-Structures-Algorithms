@@ -35,7 +35,22 @@ public class TreeNode<T extends Comparable<T>> {
 				rightChild.insert(value);
 			}
 		}
+	}
 
+
+	public void traverseInOrder()
+	{
+		if(leftChild != null)
+		{
+			leftChild.traverseInOrder();
+		}
+
+		System.out.print(currVal +",");
+
+		if(rightChild !=null)
+		{
+			rightChild.traverseInOrder();
+		}
 
 	}
 

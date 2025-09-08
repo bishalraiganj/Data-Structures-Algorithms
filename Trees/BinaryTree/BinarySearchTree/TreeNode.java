@@ -19,6 +19,27 @@ public class TreeNode<T extends Comparable<T>> {
 	}
 
 
+
+	public TreeNode<T> get(T searchVal)
+	{
+		if(searchVal.equals(currVal))
+		{
+			return this;
+		}
+		else if(leftChild!= null && currVal.compareTo(searchVal) > 0 )
+		{
+			return leftChild.get(searchVal);
+		}
+		else if(rightChild != null && currVal.compareTo(searchVal) < 0)
+		{
+			return rightChild.get(searchVal);
+		}
+
+		return null;
+
+
+	}
+
 	public void insert(T value) {
 		if (currVal.compareTo(value) == 0) {
 			return;
@@ -85,7 +106,8 @@ public class TreeNode<T extends Comparable<T>> {
 	@Override
 	public String toString()
 	{
-		return "Root(%s)  \n  leftChild(%s)     rightChild(%s)".formatted(currVal,leftChild.currVal,rightChild.currVal);
+		return "Root(%s)  \n  leftChild(%s)     rightChild(%s)".formatted(currVal,(leftChild!=null?leftChild.currVal:"null"),
+				rightChild!=null?rightChild.currVal:"null");
 
 	}
 

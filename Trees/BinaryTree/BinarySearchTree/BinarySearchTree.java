@@ -28,6 +28,14 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	}
 
 
+	public TreeNode<T> get(T value)
+	{
+		if(root != null) {
+			return root.get(value);
+		}
+		return null;
+	}
+
 	public void traverseInOrder()
 	{
 		root.traverseInOrder();

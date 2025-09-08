@@ -25,6 +25,16 @@ public class Main
 		bst.insert(49);
 
 		bst.traverseInOrder();
+		System.out.println("-".repeat(50));
+
+		System.out.println(bst.get(49));
+		System.out.println(bst.get(40));
+		System.out.println(bst.get(26));
+		System.out.println(bst.get(22));
+		System.out.println(bst.get(88));
+
+
+
 
 
 

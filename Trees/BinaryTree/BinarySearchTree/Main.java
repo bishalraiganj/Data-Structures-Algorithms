@@ -33,6 +33,11 @@ public class Main
 		System.out.println(bst.get(22));
 		System.out.println(bst.get(88));
 
+		System.out.println("-".repeat(50));
+
+		System.out.println(bst.getMax());
+		System.out.println(bst.getMin());
+
 
 
 

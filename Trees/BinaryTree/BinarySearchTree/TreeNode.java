@@ -36,9 +36,31 @@ public class TreeNode<T extends Comparable<T>> {
 		}
 
 		return null;
-
-
 	}
+
+	public TreeNode<T> getMax()
+	{
+		if(rightChild == null)
+		{
+			return this;
+		}
+		else {
+			return rightChild.getMax();
+		}
+	}
+
+	public TreeNode<T> getMin()
+	{
+		if(leftChild == null)
+		{
+			return this;
+		}
+		else
+		{
+			return leftChild.getMin();
+		}
+	}
+
 
 	public void insert(T value) {
 		if (currVal.compareTo(value) == 0) {
@@ -101,6 +123,8 @@ public class TreeNode<T extends Comparable<T>> {
 		}
 
 	}
+
+
 
 
 	@Override

@@ -36,6 +36,27 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		return null;
 	}
 
+	public TreeNode<T> getMax()
+	{
+		if(root != null)
+		{
+			return root.getMax();
+		}
+		return null;
+
+	}
+
+	public TreeNode<T> getMin()
+	{
+		if(root != null)
+		{
+			return root.getMin();
+		}
+
+		return null;
+	}
+
+
 	public void traverseInOrder()
 	{
 		root.traverseInOrder();

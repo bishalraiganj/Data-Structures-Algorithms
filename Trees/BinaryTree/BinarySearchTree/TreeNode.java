@@ -3,7 +3,7 @@ package BinaryTree.BinarySearchTree;
 public class TreeNode<T extends Comparable<T>> {
 
 
-	private final T currVal;
+	private  T currVal;
 	private final Class<T> valClazz;
 	private TreeNode<T> leftChild;
 	private TreeNode<T> rightChild;
@@ -43,6 +43,11 @@ public class TreeNode<T extends Comparable<T>> {
 		return null;
 	}
 
+
+	public void setValue(T val)
+	{
+		this.currVal = val;
+	}
 	public TreeNode<T> getMax()
 	{
 		if(rightChild == null)
@@ -115,7 +120,12 @@ public class TreeNode<T extends Comparable<T>> {
 	public void setLeftChild(TreeNode<T> leftChild) {
 		if (leftChild != null && leftChild.currVal.getClass().equals(valClazz)) {
 			this.leftChild = leftChild;
-		} else {
+		}
+		else if(leftChild == null)
+		{
+			this.leftChild = leftChild;
+		}
+		else {
 			throw new IllegalArgumentException("Required: " + this.leftChild.valClazz.getTypeName() + " Provided: " + leftChild.currVal.getClass().getTypeName());
 		}
 	}
@@ -123,7 +133,11 @@ public class TreeNode<T extends Comparable<T>> {
 	public void setRightChild(TreeNode<T> rightChild) {
 		if (rightChild != null && rightChild.currVal.getClass().equals(valClazz)) {
 			this.rightChild = rightChild;
-		} else {
+		} else if (rightChild == null)
+		{
+			this.rightChild = null;
+		}
+		else {
 			throw new IllegalArgumentException("Required: " + this.rightChild.valClazz.getTypeName() + " Provided: " + rightChild.currVal.getClass().getTypeName());
 		}
 

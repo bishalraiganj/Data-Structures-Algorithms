@@ -36,6 +36,46 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		return null;
 	}
 
+	public  void delete(T value)
+	{
+		root = delete(root,value);
+	}
+
+	public TreeNode delete(TreeNode<T> node, T value)
+	{
+		if(node == null)
+		{
+			return node;
+		}
+
+		if(node.getValue().compareTo(value) == 0 )
+		{
+			if(node.getLeftChild() == null)
+			{
+				return node.getRightChild();
+			}
+			if(node.getRightChild() == null)
+			{
+				return node.getLeftChild();
+			}
+		}
+		else
+		{
+			if(node.getValue().compareTo(value) > 0 )
+			{
+				node.setLeftChild(delete(node.getLeftChild(), value));
+			}
+			else if(node.getValue().compareTo(value) < 0)
+			{
+				node.setRightChild(delete(node.getRightChild(), value));
+			}
+		}
+
+		return node;
+
+	}
+
+
 	public TreeNode<T> getMax()
 	{
 		if(root != null)

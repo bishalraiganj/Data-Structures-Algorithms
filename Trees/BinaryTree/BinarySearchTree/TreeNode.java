@@ -19,6 +19,11 @@ public class TreeNode<T extends Comparable<T>> {
 	}
 
 
+	public T getValue()
+	{
+		return currVal;
+	}
+
 
 	public TreeNode<T> get(T searchVal)
 	{

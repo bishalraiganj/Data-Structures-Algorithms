@@ -244,5 +244,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
 
 
+	public void preOrderTraversal()
+	{
+		root.preOrderTraversal(root);
+	}
 
 }

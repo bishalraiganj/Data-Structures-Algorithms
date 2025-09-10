@@ -112,27 +112,31 @@ public class Main
 		System.out.println("\n"+"-".repeat(50));
 
 //		bst2.delete2(29);
-		bst2.delete2(41);
+//		bst2.delete2(41);
 
 		bst2.traverseInOrder();
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+		System.out.println("\n"+"-".repeat(50));
+
+		bst2.preOrderTraversal();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

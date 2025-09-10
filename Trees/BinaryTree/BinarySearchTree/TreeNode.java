@@ -144,6 +144,27 @@ public class TreeNode<T extends Comparable<T>> {
 	}
 
 
+	public void preOrderTraversal(TreeNode<T> root)
+	{
+		if(root == null)
+		{
+			return;
+		}
+
+		System.out.print(root.currVal+",");
+
+		if(root.leftChild != null)
+		{
+			preOrderTraversal(root.leftChild);
+		}
+
+		if(root.rightChild != null)
+		{
+			preOrderTraversal(root.rightChild);
+		}
+
+
+	}
 
 
 	@Override

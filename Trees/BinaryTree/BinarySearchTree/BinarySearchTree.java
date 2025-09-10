@@ -242,6 +242,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		return getMin(root.getLeftChild());
 	}
 
+	public void preOrderTraversal()
+	{
+		root.preOrderTraversal(root);
+	}
+
 
 
 

@@ -117,6 +117,10 @@ public class Main
 		bst2.traverseInOrder();
 
 
+		System.out.println("\n"+"-".repeat(50));
+		bst2.preOrderTraversal();
+
+
 
 
 // added pre-order traversal recursive function

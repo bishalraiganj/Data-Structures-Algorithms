@@ -2,6 +2,7 @@ package Heap;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class Heap<T extends Comparable<T>> {
 
@@ -33,6 +34,9 @@ public class Heap<T extends Comparable<T>> {
 		}
 
 	}
+
+
+
 	public void insert(T element)
 	{
 		if(isFull())
@@ -45,10 +49,40 @@ public class Heap<T extends Comparable<T>> {
 		fixHeapAbove(size);
 
 		size++;
+	}
 
 
+	public void delete(T element)
+	{
+		int index = -1;
+		for(int i = 0; i < size; i++)
+		{
+			if(heap[i].compareTo(element) == 0)
+			{
+				index = i;
+				break;
+			}
+		}
+
+		if(index == -1)
+		{
+			throw new NoSuchElementException("Element not found");
+		}
+		else
+		{
+			T replacement = heap[size - 1];
+
+			heap[size - 1 ] = null;
+
+			heap[index] = replacement;
+			size--;
+			fixHeapAbove(index);
+			fixHeapBelow(index);
+		}
 
 	}
+
+
 
 
 	public void fixHeapBelow(int index)
@@ -67,7 +101,12 @@ public class Heap<T extends Comparable<T>> {
 
 			T greatest;
 			int greatestIndex;
-			if (leftChild.compareTo(rightChild) >= 0)
+			if(rightChild == null)
+			{
+				greatest  = leftChild;
+				greatestIndex = lcIndex;
+			}
+			else if (  leftChild.compareTo(rightChild) >= 0)
 			{
 				greatest = leftChild;
 				greatestIndex = lcIndex;

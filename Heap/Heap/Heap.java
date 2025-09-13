@@ -20,6 +20,10 @@ public class Heap<T extends Comparable<T>> {
 
 
 
+	public T[] getHeap()
+	{
+		return heap;
+	}
 
 
 	public void insertExact(T element)
@@ -52,14 +56,16 @@ public class Heap<T extends Comparable<T>> {
 	}
 
 
-	public void delete(T element)
+	public T delete(T element)
 	{
 		int index = -1;
+		T deletedElement = null ;
 		for(int i = 0; i < size; i++)
 		{
 			if(heap[i].compareTo(element) == 0)
 			{
 				index = i;
+				deletedElement = heap[index];
 				break;
 			}
 		}
@@ -80,6 +86,7 @@ public class Heap<T extends Comparable<T>> {
 			fixHeapBelow(index);
 		}
 
+		return deletedElement;
 	}
 
 
@@ -134,6 +141,74 @@ public class Heap<T extends Comparable<T>> {
 
 	}
 
+	public void sort() {
+		int lastHeapIndex = size - 1;
+		for (int i = 0; i < lastHeapIndex; i++)
+		{
+			T tmp = heap[0];
+			heap[0] = heap[lastHeapIndex- i];
+			heap[lastHeapIndex - i] = tmp;
+
+			fixHeapBelow(0,lastHeapIndex - i - 1);
+
+
+
+		}
+
+
+
+
+
+	}
+
+
+	public void fixHeapBelow(int index, int lastHeapIndex)
+	{
+		int childToSwap;
+
+
+		while( index <= lastHeapIndex )
+		{
+			int leftChild = getChild(index,true);
+			int rightChild = getChild(index,false);
+
+			if(leftChild <= lastHeapIndex) {
+				if (rightChild > lastHeapIndex) {
+					childToSwap = leftChild;
+				} else {
+					childToSwap = (heap[leftChild].compareTo(heap[rightChild]) > 0 ? leftChild : rightChild);
+				}
+
+				if (heap[index].compareTo(heap[childToSwap]) < 0)
+				{
+					T temp = heap[index];
+					heap[index] = heap[childToSwap];
+					heap[childToSwap] = temp;
+				}
+				else
+				{
+					break;
+				}
+
+				index = childToSwap;
+
+
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+
+
+	public int getChild(int index,boolean left)
+	{
+		return  2 * index + (left? 1 : 2);
+	}
+
+
+
 	public void fixHeapAbove(int index) // Heapify
 	{
 
@@ -160,6 +235,21 @@ public class Heap<T extends Comparable<T>> {
 	public boolean isFull()
 	{
 		return size == heap.length;
+	}
+
+
+	public T peek() {
+		if (isEmpty())
+		{
+			throw new NoSuchElementException("Heap is empty");
+		}
+
+		return heap[0];
+	}
+
+	public boolean isEmpty()
+	{
+		return size == 0;
 	}
 
 	public void printHeap()

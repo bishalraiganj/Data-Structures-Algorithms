@@ -20,6 +20,19 @@ public class Heap<T extends Comparable<T>> {
 
 
 
+
+	public void insertExact(T element)
+	{
+		if(isFull())
+		{
+			throw new ArrayIndexOutOfBoundsException("Heap is full");
+		}
+		else
+		{
+			heap[size++] = element;
+		}
+
+	}
 	public void insert(T element)
 	{
 		if(isFull())
@@ -38,6 +51,10 @@ public class Heap<T extends Comparable<T>> {
 	}
 
 
+	public void fixHeapBelow(int index)
+	{
+		fixHeapBelow(index,heap[index]);
+	}
 
 	public void fixHeapBelow(int index,T val)
 	{

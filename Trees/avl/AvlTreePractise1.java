@@ -1,5 +1,4 @@
 package avl;
-
 public class AvlTreePractise1 {
 
 
@@ -42,6 +41,8 @@ public class AvlTreePractise1 {
 		int rightHeight =  root.right == null ? -1 : root.right.height;
 
 		int balanceFactor = leftHeight - rightHeight;
+		//Geor Adelson Velsky Landis Tree By Bishal_Adhikary 11/01/2026 simple implementaion Practise
+
 		Node toReturn = null;
 
 		//Left Imbalance

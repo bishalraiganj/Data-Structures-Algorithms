@@ -74,6 +74,41 @@ public class AvlTreePractise1 {
 
 	}
 
+
+	//The Following are Rotation Methods
+
+	//LL Rotate
+	public Node LlRotate(Node root)
+	{
+		Node newRoot = root.left;
+		root.left = newRoot.left;
+		return newRoot;
+	}
+
+	//LR Rotate
+	public Node LrRotate(Node root)
+	{
+		root.left =  RrRotate(root.left);
+		return LlRotate(root);
+	}
+
+
+	//RR Case
+	public Node RrRotate(Node root)
+	{
+		Node newRoot = root.right;
+		root.right = newRoot.right;
+		return  newRoot;
+	}
+
+	//RL Rotate
+	public Node RlRotate(Node root)
+	{
+		root.right = LrRotate(root.right);
+		return RrRotate(root);
+	}
+
+
 	public void setSimpleHeight(Node root)
 	{
 		if(root == null) return;
@@ -81,4 +116,32 @@ public class AvlTreePractise1 {
 		int rightHeight = root.right == null ? -1 : root.right.height;
 		root.height = Math.max(leftHeight, rightHeight) + 1;
 	}
+
+
+	//The Following Are Traversal Methods by - Bishal Adhikary |Software Engineer| 2026 Please Give Proper Credits If using my Code ;-)
+
+	public void inOrder(Node root)
+	{
+		if(root == null) return;
+		inOrder(root.left);
+		System.out.println(root.data);
+		inOrder(root.right);
+	}
+
+	public void preOrder(Node root)
+	{
+		if(root == null) return;
+		System.out.println(root.data);
+		preOrder(root.left);
+		preOrder(root.right);
+	}
+
+	public void postOrder(Node root)
+	{
+		if(root == null) return ;
+		postOrder(root.left);
+		postOrder(root.right);
+		System.out.println(root.data);
+	}
+
 }

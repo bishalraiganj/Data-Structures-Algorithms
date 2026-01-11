@@ -38,6 +38,7 @@ public class Main {
 		h2.insert(37);
 		h2.insert(34);
 		h2.insert(37);
+		h2.insert(99);
 		h2.insert(36);
 		h2.insert(33);
 		h2.insert(32);

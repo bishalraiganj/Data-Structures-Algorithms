@@ -189,10 +189,7 @@ public class Heap<T extends Comparable<T>> {
 				{
 					break;
 				}
-
 				index = childToSwap;
-
-
 			}
 			else
 			{
@@ -213,7 +210,7 @@ public class Heap<T extends Comparable<T>> {
 	{
 
 		T newValue = heap[index];
-		if(heap[index].compareTo(heap[getParent(index)]) > 0   )
+		if( heap[index].compareTo(heap[getParent(index)]) > 0   )
 		{
 			while(newValue.compareTo(heap[getParent(index)])>0 && index > 0 )
 			{

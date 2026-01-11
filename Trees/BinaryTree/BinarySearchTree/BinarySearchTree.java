@@ -248,6 +248,44 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	}
 
 
+	public int maxDepth()
+	{
+		return traverse(root,0);
+	}
+
+	public  int traverse(TreeNode root,int level)
+	{
+		int left = 0 ;
+		int right  = 0 ;
+		if(root.getLeftChild() != null)
+		{
+			left =	traverse(root.getLeftChild(), level+1);
+		}
+		if(root.getRightChild() != null)
+		{
+			right = traverse(root.getRightChild(),level+1);
+		}
+
+		if(root.getLeftChild() == null && root.getRightChild() == null)
+		{
+			return level;
+		}
+		else if( root.getRightChild() != null && root.getLeftChild() == null)
+		{
+			return right;
+		}
+		else if(root.getLeftChild() != null  && root.getRightChild() == null)
+		{
+			return left;
+		}
+		else
+		{
+			return Math.max(left,right);
+		}
+
+
+	}
+
 
 
 }

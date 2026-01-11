@@ -118,8 +118,9 @@ public class Main
 
 
 		System.out.println("\n"+"-".repeat(50));
-		bst2.preOrderTraversal();
+//		bst2.preOrderTraversal();
 
+		System.out.println(bst2.maxDepth());
 
 
 

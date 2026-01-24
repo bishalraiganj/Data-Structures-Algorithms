@@ -1,7 +1,10 @@
 package avl;
 
+import java.util.Arrays;
+
 public class AvlTreePractise2 {
 
+	//AVL tree practise 2 by Bishal Adhikary (current known most optimized  )
 
 	//For Simplicity not applying encapsulation
 
@@ -33,6 +36,19 @@ public class AvlTreePractise2 {
 	}
 
 
+	//Single node/vertex insert
+	public void insert(int data)
+	{
+		root = insert(root,data);
+	}
+
+	//Batch insertion
+	public void insert(int... data)
+	{
+//		Arrays.stream(data).forEach(e->insert(e));
+		Arrays.stream(data).forEach(this::insert);
+	}
+
 	private Node insert(Node currNode,int data)
 	{
 		//Base case , Breaking Condition
@@ -50,9 +66,9 @@ public class AvlTreePractise2 {
 		}
 
 		//Goes to the left if smaller than currNode
-		if(data < currNode.data) insert(currNode.left,data);
+		if(data < currNode.data) currNode.left = insert(currNode.left,data);
 		//Goes to the right if greater than currNode
-		if(data > currNode.data) insert(currNode.right,data);
+		if(data > currNode.data) currNode.right = insert(currNode.right,data);
 
 		//Here control comes means recursion started unfolding ,(except for the recursive call where the base case is met)
 
@@ -61,7 +77,7 @@ public class AvlTreePractise2 {
 		int leftHeight = currNode.left == null ? -1 : currNode.left.height;
 		int rightHeight = currNode.right == null ? -1 : currNode.right.height;
 
-		int balanceFactor = Math.max(leftHeight, rightHeight) + 1;
+		int balanceFactor = leftHeight - rightHeight;
 
 
 		//To track , if rotation happened for the currNode and it changed and this recursive call needs to return a different node/vertex
@@ -149,7 +165,7 @@ public class AvlTreePractise2 {
 	private Node LRrotation(Node imbalancedNode)
 	{
 		imbalancedNode.left = RRrotation(imbalancedNode.left);
-		return RRrotation(imbalancedNode);
+		return LLrotation(imbalancedNode);
 	}
 
 	//RL rotation (Composition of LL and then RR rotation)

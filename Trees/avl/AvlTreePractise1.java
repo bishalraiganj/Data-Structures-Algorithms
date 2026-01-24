@@ -1,4 +1,7 @@
 package avl;
+
+import java.util.Arrays;
+
 public class AvlTreePractise1 {
 
 
@@ -10,7 +13,7 @@ public class AvlTreePractise1 {
 	}
 
 
-	public class Node {
+	public static class Node {
 
 		int data;
 		int height;
@@ -21,55 +24,103 @@ public class AvlTreePractise1 {
 		{
 			this.data = data;
 		}
+
+		@Override
+		public String toString()
+		{
+			return "%d(%d)".formatted(data, height);
+		}
 	}
 
+
+
+	public static void main(String... args)
+	{
+		Node root = new Node(1);
+		AvlTreePractise1 tree = new AvlTreePractise1(root);
+		tree.insertAll(2,4,3,5);
+		tree.preOrder();
+
+	}
+
+
+
+	public void insert(int data)
+	{
+		this.root = insert(this.root, data);
+	}
+
+	public void insertAll(int... nodes)
+	{
+		Arrays.stream(nodes).forEach(this::insert);
+	}
 
 
 
 	public Node insert(Node root, int data)
 	{
+
+
+
+		//Base Case / Breaking Condition
 		if(root == null) {
 			Node newNode = new Node(data);
 			newNode.height = 0;
 			return newNode;
 		}
 
-		if(data < root.data) insert(root.left,data);
-		if(data > root.data) insert(root.right,data);
+		//Duplicate Handling Logic
+		if(root.data == data) return root;
+
+		if(data < root.data) root.left = insert(root.left,data);
+		if(data > root.data) root.right = insert(root.right,data);
 
 		int leftHeight = root.left == null ? -1 : root.left.height;
 		int rightHeight =  root.right == null ? -1 : root.right.height;
 
 		int balanceFactor = leftHeight - rightHeight;
-		//Geor Adelson Velsky Landis Tree By Bishal_Adhikary 11/01/2026 simple implementaion Practise
+		//George Adelson Velsky Landis Tree By Bishal_Adhikary 11/01/2026 simple implementaion Practise
 
-		Node toReturn = null;
+		Node toReturn = root;
 
 		//Left Imbalance
 		if(balanceFactor > 1) {
 			//LL Imbalance Case
-			if(data > root.left.data)
+			if(data < root.left.data)
 			{
-
+				toReturn  = LlRotate(root);
+				setHeightSimple(root);
+				setHeightSimple(toReturn);
 			}else
 			{
 				//LR Imbalance Case
+				toReturn  = LrRotate(root);
+				setHeightSimple(root);
+				setHeightSimple(toReturn.left);
+				setHeightSimple(toReturn);
+
 			}
 		}
 		//Right Imbalance Case
 		if(balanceFactor < -1)
 		{
 			//RR Imbalance Case
-			if(data < root.right.data)
+			if(data > root.right.data)
 			{
-
+				toReturn  = RrRotate(root);
+				setHeightSimple(root);
+				setHeightSimple(toReturn);
 			}else
 			{
-				//RL Imbalance Case
+				//Rl Case
+				toReturn = RlRotate(root);
+				setHeightSimple(root);
+				setHeightSimple(toReturn.right);
+				setHeightSimple(toReturn);
 			}
 		}
 
-		if(toReturn == root) toReturn.height = Math.max(leftHeight, rightHeight) + 1;
+		if(toReturn == root) setHeightSimple(root);
 		return toReturn;
 
 	}
@@ -81,7 +132,8 @@ public class AvlTreePractise1 {
 	public Node LlRotate(Node root)
 	{
 		Node newRoot = root.left;
-		root.left = newRoot.left;
+		root.left = newRoot.right;
+		newRoot.right = root;
 		return newRoot;
 	}
 
@@ -97,7 +149,8 @@ public class AvlTreePractise1 {
 	public Node RrRotate(Node root)
 	{
 		Node newRoot = root.right;
-		root.right = newRoot.right;
+		root.right = newRoot.left;
+		newRoot.left = root;
 		return  newRoot;
 	}
 
@@ -109,7 +162,7 @@ public class AvlTreePractise1 {
 	}
 
 
-	public void setSimpleHeight(Node root)
+	public void setHeightSimple(Node root)
 	{
 		if(root == null) return;
 		int leftHeight = root.left == null  ? -1 : root.left.height;
@@ -120,28 +173,45 @@ public class AvlTreePractise1 {
 
 	//The Following Are Traversal Methods by - Bishal Adhikary |Software Engineer| 2026 Please Give Proper Credits If using my Code ;-)
 
-	public void inOrder(Node root)
+
+	public void inOrder()
+	{
+		inOrder(root);
+	}
+
+	private void inOrder(Node root)
 	{
 		if(root == null) return;
 		inOrder(root.left);
-		System.out.println(root.data);
+		System.out.println(root);
 		inOrder(root.right);
 	}
 
-	public void preOrder(Node root)
+	public void preOrder()
+	{
+		preOrder(root);
+	}
+
+	private void preOrder(Node root)
 	{
 		if(root == null) return;
-		System.out.println(root.data);
+		System.out.println(root);
 		preOrder(root.left);
 		preOrder(root.right);
 	}
 
-	public void postOrder(Node root)
+
+	public void postOrder()
+	{
+		postOrder(root);
+	}
+
+	private void postOrder(Node root)
 	{
 		if(root == null) return ;
 		postOrder(root.left);
 		postOrder(root.right);
-		System.out.println(root.data);
+		System.out.println(root);
 	}
 
 }

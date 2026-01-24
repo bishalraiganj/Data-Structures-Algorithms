@@ -22,10 +22,14 @@ public class AvlTreePractise2 {
 			this.data = data;
 		}
 
+
+
 		@Override
 		public String toString()
 		{
-			return  "[data:"+data+" L:"+left.data+" R:"+right.data+"] ";
+			String leftChildStr = left == null ? "" :left.data + "";
+			String rightChildStr = right == null  ? "" :right.data + "";
+			return  "[data:"+data+" L:"+leftChildStr+" R:"+rightChildStr+"] ";
 		}
 	}
 
@@ -33,6 +37,19 @@ public class AvlTreePractise2 {
 	public AvlTreePractise2(int rootData)
 	{
 		root=new Node(rootData);
+	}
+
+
+
+	public static void main(String... args)
+	{
+//		AvlTreePractise2.Node root = new AvlTreePractise2.Node(1);
+		AvlTreePractise2 tree = new AvlTreePractise2(1);
+		tree.insert(2,4,3,5);
+		tree.preOrderInvoke();
+		tree.inOrderInvoke();
+		tree.postOrderInvoke();
+
 	}
 
 
@@ -192,6 +209,7 @@ public class AvlTreePractise2 {
 	//Traversal Logics
 	public void preOrderInvoke()
 	{
+		System.out.println();
 		preOrder(root);
 	}
 
@@ -205,6 +223,7 @@ public class AvlTreePractise2 {
 
 	public void inOrderInvoke()
 	{
+		System.out.println();
 		inOrder(root);
 	}
 	private void inOrder(Node currNode)
@@ -218,6 +237,7 @@ public class AvlTreePractise2 {
 
 	public void postOrderInvoke()
 	{
+		System.out.println();
 		postOrder(root);
 	}
 	private void postOrder(Node currNode)
